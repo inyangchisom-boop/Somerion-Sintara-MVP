@@ -43,7 +43,13 @@ if (loginForm) {
 
     try {
       await auth.signInWithEmailAndPassword(email, password);
+const user = auth.currentUser;
 
+await db.collection("users").doc(user.uid).set({
+  email: user.email,
+  role: "admin",
+  createdAt: firebase.firestore.FieldValue.serverTimestamp()
+}, { merge: true });
       document.getElementById("login").classList.add("hidden");
       document.getElementById("dashboard").classList.remove("hidden");
 
