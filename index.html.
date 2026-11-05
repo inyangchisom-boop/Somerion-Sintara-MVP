@@ -1,0 +1,531 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Somerion Sintara</title>
+
+<style>
+:root {
+  --bg: #080b12;
+  --panel: #111722;
+  --border: #263244;
+  --blue: #2684ff;
+  --text: #f3f6fc;
+  --muted: #8995a8;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+button, input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.brand {
+  font-size: 23px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.brand span {
+  color: var(--blue);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* LOGIN */
+
+#login {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+.login-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 32px 24px;
+  width: 100%;
+  max-width: 410px;
+}
+
+.login-card .brand {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.login-card h2 {
+  text-align: center;
+  margin: 25px 0 8px;
+}
+
+.login-card p {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 14px;
+}
+
+label {
+  display: block;
+  margin: 15px 0 8px;
+  font-size: 13px;
+}
+
+input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #080e19;
+  color: white;
+}
+
+.primary {
+  width: 100%;
+  padding: 14px;
+  margin-top: 22px;
+  background: var(--blue);
+  color: white;
+  border: 0;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+/* DASHBOARD */
+
+header {
+  height: 70px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 22px;
+}
+
+.layout {
+  display: flex;
+  min-height: calc(100vh - 70px);
+}
+
+aside {
+  width: 220px;
+  padding: 22px 14px;
+  border-right: 1px solid var(--border);
+}
+
+aside button {
+  width: 100%;
+  text-align: left;
+  padding: 13px;
+  margin-bottom: 7px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+}
+
+aside button.active,
+aside button:hover {
+  background: #172944;
+  color: white;
+}
+
+main {
+  flex: 1;
+  padding: 28px;
+  min-width: 0;
+}
+
+.page-title {
+  margin-bottom: 8px;
+  font-size: 26px;
+}
+
+.intro {
+  margin-bottom: 25px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 28px;
+}
+
+.card, .section {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.card small {
+  color: var(--muted);
+}
+
+.card h2 {
+  margin-top: 12px;
+  font-size: 27px;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.section h3 {
+  margin-bottom: 18px;
+}
+
+.apps {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 13px;
+}
+
+.app {
+  background: #0b111c;
+  border: 1px solid var(--border);
+  padding: 17px;
+  border-radius: 10px;
+}
+
+.app h4 {
+  margin-bottom: 10px;
+}
+
+.status {
+  color: #ffbd58;
+  font-size: 12px;
+  margin: 8px 0;
+}
+
+.connect {
+  padding: 9px 13px;
+  margin-top: 10px;
+  background: #172944;
+  border: 1px solid #286bc3;
+  color: #80baff;
+  border-radius: 6px;
+}
+
+.activity {
+  padding: 13px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+
+.notice {
+  margin-top: 15px;
+  padding: 13px;
+  border-radius: 8px;
+  background: #172944;
+  color: #a8ceff;
+  font-size: 13px;
+  display: none;
+}
+
+footer {
+  text-align: center;
+  color: var(--muted);
+  padding: 25px;
+  font-size: 12px;
+}
+
+@media(max-width: 700px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  aside {
+    width: 100%;
+    display: flex;
+    overflow-x: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+    padding: 10px;
+  }
+
+  aside button {
+    width: auto;
+    white-space: nowrap;
+    margin: 0 4px;
+  }
+
+  main {
+    padding: 18px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .apps {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN SCREEN -->
+
+<section id="login">
+  <div class="login-card">
+    <div class="brand">SOMERION <span>SINTARA</span></div>
+    <h2>Welcome Back</h2>
+    <p class="muted">Your business connections, in one place.</p>
+
+    <form id="loginForm">
+      <label>Email Address</label>
+      <input type="email" placeholder="you@company.com" required>
+
+      <label>Password</label>
+      <input type="password" placeholder="Enter password" required>
+
+      <button class="primary" type="submit">
+        Enter Demo Dashboard
+      </button>
+    </form>
+
+    <p class="muted" style="margin-top:20px;font-size:11px;">
+      Prototype only. No real account is created.
+    </p>
+  </div>
+</section>
+
+<!-- DASHBOARD -->
+
+<section id="dashboard" class="hidden">
+
+<header>
+  <div class="brand">SOMERION <span>SINTARA</span></div>
+  <button onclick="logout()" class="connect">Exit Demo</button>
+</header>
+
+<div class="layout">
+
+<aside>
+  <button class="active" onclick="showPage('overview',this)">Dashboard</button>
+  <button onclick="showPage('integrations',this)">Connections</button>
+  <button onclick="showPage('alerts',this)">Alerts</button>
+  <button onclick="showPage('activity',this)">Activity</button>
+  <button onclick="showPage('settings',this)">Settings</button>
+</aside>
+
+<main>
+
+<!-- OVERVIEW -->
+
+<div id="overview">
+  <h1 class="page-title">Business Overview</h1>
+  <p class="intro">Monitor your business applications from one place.</p>
+
+  <div class="cards">
+    <div class="card">
+      <small>Connected Applications</small>
+      <h2>0</h2>
+    </div>
+
+    <div class="card">
+      <small>Active Alerts</small>
+      <h2>0</h2>
+    </div>
+
+    <div class="card">
+      <small>Integration Health</small>
+      <h2>--</h2>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Welcome to Somerion Sintara</h3>
+    <p class="muted">
+      Your integration dashboard is ready.
+      Connect your business applications to begin.
+    </p>
+  </div>
+
+  <div class="section">
+    <h3>Quick Access</h3>
+    <p class="muted">
+      Shopify · QuickBooks · Facebook · Instagram
+    </p>
+  </div>
+</div>
+
+<!-- CONNECTIONS -->
+
+<div id="integrations" class="hidden">
+  <h1 class="page-title">Connections</h1>
+  <p class="intro">Manage your business applications.</p>
+
+  <div class="section">
+    <h3>Business Applications</h3>
+    <div class="apps">
+
+      <div class="app">
+        <h4>Shopify</h4>
+        <p class="muted">Online Store</p>
+        <div class="status">Not connected</div>
+        <button class="connect" onclick="connectApp('Shopify')">
+          Connect
+        </button>
+      </div>
+
+      <div class="app">
+        <h4>QuickBooks</h4>
+        <p class="muted">Accounting</p>
+        <div class="status">Not connected</div>
+        <button class="connect" onclick="connectApp('QuickBooks')">
+          Connect
+        </button>
+      </div>
+
+      <div class="app">
+        <h4>Facebook</h4>
+        <p class="muted">Social Media</p>
+        <div class="status">Not connected</div>
+        <button class="connect" onclick="connectApp('Facebook')">
+          Connect
+        </button>
+      </div>
+
+      <div class="app">
+        <h4>Instagram</h4>
+        <p class="muted">Social Media</p>
+        <div class="status">Not connected</div>
+        <button class="connect" onclick="connectApp('Instagram')">
+          Connect
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ALERTS -->
+
+<div id="alerts" class="hidden">
+  <h1 class="page-title">Alerts</h1>
+  <p class="intro">Monitor integration problems and warnings.</p>
+
+  <div class="section">
+    <h3>No alerts yet</h3>
+    <p class="muted">
+      Alerts will appear here when monitoring is implemented.
+    </p>
+  </div>
+</div>
+
+<!-- ACTIVITY -->
+
+<div id="activity" class="hidden">
+  <h1 class="page-title">Activity</h1>
+  <p class="intro">Your recent business system activity.</p>
+
+  <div class="section">
+    <h3>Activity Feed</h3>
+    <div class="activity">Dashboard prototype opened.</div>
+    <div class="activity">Integration monitoring: Not yet active.</div>
+  </div>
+</div>
+
+<!-- SETTINGS -->
+
+<div id="settings" class="hidden">
+  <h1 class="page-title">Settings</h1>
+  <p class="intro">Manage your workspace.</p>
+
+  <div class="section">
+    <h3>Company</h3>
+    <p>Somerion Sintara</p>
+    <p class="muted">Parent company: Somerion</p>
+  </div>
+</div>
+
+<div id="notice" class="notice"></div>
+
+</main>
+</div>
+
+<footer>
+  SOMERION © 2026 · Connected Business. Simple Operations.
+</footer>
+
+</section>
+
+<script>
+
+const pages = [
+  "overview",
+  "integrations",
+  "alerts",
+  "activity",
+  "settings"
+];
+
+document.getElementById("loginForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  document.getElementById("login").classList.add("hidden");
+  document.getElementById("dashboard").classList.remove("hidden");
+});
+
+function logout() {
+  document.getElementById("dashboard").classList.add("hidden");
+  document.getElementById("login").classList.remove("hidden");
+}
+
+function showPage(page, button) {
+  pages.forEach(id => {
+    document.getElementById(id).classList.add("hidden");
+  });
+
+  document.getElementById(page).classList.remove("hidden");
+
+  document.querySelectorAll("aside button").forEach(btn => {
+    btn.classList.remove("active");
+  });
+
+  button.classList.add("active");
+}
+
+function connectApp(name) {
+  const notice = document.getElementById("notice");
+
+  notice.style.display = "block";
+  notice.textContent =
+    name + " connection setup will be implemented in the next development milestone. No account has been connected.";
+}
+
+</script>
+
+</body>
+</html>
