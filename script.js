@@ -35,11 +35,21 @@ const pages = [
 const loginForm = document.getElementById("loginForm");
 
 if (loginForm) {
-  loginForm.addEventListener("submit", function(event) {
+  loginForm.addEventListener("submit", async function(event) {
     event.preventDefault();
 
-    document.getElementById("login").classList.add("hidden");
-    document.getElementById("dashboard").classList.remove("hidden");
+    const email = loginForm.querySelector('input[type="email"]').value.trim();
+    const password = loginForm.querySelector('input[type="password"]').value;
+
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+
+      document.getElementById("login").classList.add("hidden");
+      document.getElementById("dashboard").classList.remove("hidden");
+
+    } catch (error) {
+      alert("Login failed: " + error.message);
+    }
   });
 }
 
