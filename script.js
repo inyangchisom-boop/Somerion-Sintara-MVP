@@ -14,7 +14,7 @@ firebase.initializeApp(firebaseConfig);
 
 // Initialize Authentication
 const auth = firebase.auth();
-
+const db = firebase.firestore();
 console.log("Somerion Firebase initialized");
 // =====================================
 // SOMERION SINTARA
