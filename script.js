@@ -43,8 +43,8 @@ if (loginForm) {
     const password = loginForm.querySelector('input[type="password"]').value;
 
     try {
-      await auth.signInWithEmailAndPassword(email, password);
-const user = auth.currentUser;
+      const credential = await auth.signInWithEmailAndPassword(email, password);
+const user = credential.user;
 
 await db.collection("users").doc(user.uid).set({
   email: user.email,
