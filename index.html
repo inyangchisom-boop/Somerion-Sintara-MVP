@@ -492,12 +492,7 @@ const pages = [
   "settings"
 ];
 
-document.getElementById("loginForm").addEventListener("submit", function(e) {
-  e.preventDefault();
 
-  document.getElementById("login").classList.add("hidden");
-  document.getElementById("dashboard").classList.remove("hidden");
-});
 
 function logout() {
   document.getElementById("dashboard").classList.add("hidden");
