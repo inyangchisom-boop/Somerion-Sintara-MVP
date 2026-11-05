@@ -55,8 +55,9 @@ await db.collection("users").doc(user.uid).set({
       document.getElementById("dashboard").classList.remove("hidden");
 
     } catch (error) {
-      alert("Login failed: " + error.message);
-    }
+  console.error("Somerion error:", error);
+  alert("Somerion error: " + error.code + " - " + error.message);
+}
   });
 }
 
