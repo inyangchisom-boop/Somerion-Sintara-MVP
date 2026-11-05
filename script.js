@@ -1,12 +1,12 @@
 // SOMERION SINTARA - FIREBASE SETUP
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyCoDlwZHahaQeyq0V30PaGKebThrIPIUco",
+  authDomain: "somerion-sintara.firebaseapp.com",
+  projectId: "somerion-sintara",
+  storageBucket: "somerion-sintara.firebasestorage.app",
+  messagingSenderId: "804338079646",
+  appId: "1:804338079646:web:e39ab278650dabd188e88f"
 };
 
 // Initialize Firebase
