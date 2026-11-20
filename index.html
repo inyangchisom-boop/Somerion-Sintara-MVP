@@ -311,12 +311,12 @@ footer {
       <input type="password" placeholder="Enter password" required>
 
       <button class="primary" type="submit">
-        Enter Demo Dashboard
+        Sign in
       </button>
     </form>
 
     <p class="muted" style="margin-top:20px;font-size:11px;">
-      Prototype only. No real account is created.
+      Sign in with your Somerion account.
     </p>
   </div>
 </section>
@@ -482,52 +482,7 @@ footer {
 
 </section>
 
-<script>
 
-const pages = [
-  "overview",
-  "integrations",
-  "alerts",
-  "activity",
-  "settings"
-];
-
-
-
-function logout() {
-  document.getElementById("dashboard").classList.add("hidden");
-  document.getElementById("login").classList.remove("hidden");
-}
-
-function showPage(page, button) {
-  pages.forEach(id => {
-    document.getElementById(id).classList.add("hidden");
-  });
-
-  document.getElementById(page).classList.remove("hidden");
-
-  document.querySelectorAll("aside button").forEach(btn => {
-    btn.classList.remove("active");
-  });
-
-  button.classList.add("active");
-}
-
-function connectApp(name) {
-  const notice = document.getElementById("notice");
-
-  notice.style.display = "block";
-  notice.textContent =
-    name + " connection setup will be implemented in the next development milestone. No account has been connected.";
-}
-
-</script>
-  
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
-<script src="script.js"></script>
 </body>
 </html>
 
