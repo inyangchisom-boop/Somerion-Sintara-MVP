@@ -1,486 +1,146 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="style.css">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Somerion Sintara</title>
-
-<style>
-:root {
-  --bg: #080b12;
-  --panel: #111722;
-  --border: #263244;
-  --blue: #2684ff;
-  --text: #f3f6fc;
-  --muted: #8995a8;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-}
-
-button, input {
-  font: inherit;
-}
-
-button {
-  cursor: pointer;
-}
-
-.hidden {
-  display: none !important;
-}
-
-.brand {
-  font-size: 23px;
-  font-weight: 800;
-  letter-spacing: 1px;
-}
-
-.brand span {
-  color: var(--blue);
-}
-
-.muted {
-  color: var(--muted);
-}
-
-/* LOGIN */
-
-#login {
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-  padding: 20px;
-}
-
-.login-card {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  padding: 32px 24px;
-  width: 100%;
-  max-width: 410px;
-}
-
-.login-card .brand {
-  text-align: center;
-  margin-bottom: 12px;
-}
-
-.login-card h2 {
-  text-align: center;
-  margin: 25px 0 8px;
-}
-
-.login-card p {
-  text-align: center;
-  margin-bottom: 25px;
-  font-size: 14px;
-}
-
-label {
-  display: block;
-  margin: 15px 0 8px;
-  font-size: 13px;
-}
-
-input {
-  width: 100%;
-  padding: 14px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: #080e19;
-  color: white;
-}
-
-.primary {
-  width: 100%;
-  padding: 14px;
-  margin-top: 22px;
-  background: var(--blue);
-  color: white;
-  border: 0;
-  border-radius: 8px;
-  font-weight: bold;
-}
-
-/* DASHBOARD */
-
-header {
-  height: 70px;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 22px;
-}
-
-.layout {
-  display: flex;
-  min-height: calc(100vh - 70px);
-}
-
-aside {
-  width: 220px;
-  padding: 22px 14px;
-  border-right: 1px solid var(--border);
-}
-
-aside button {
-  width: 100%;
-  text-align: left;
-  padding: 13px;
-  margin-bottom: 7px;
-  border: 0;
-  border-radius: 8px;
-  background: transparent;
-  color: var(--muted);
-}
-
-aside button.active,
-aside button:hover {
-  background: #172944;
-  color: white;
-}
-
-main {
-  flex: 1;
-  padding: 28px;
-  min-width: 0;
-}
-
-.page-title {
-  margin-bottom: 8px;
-  font-size: 26px;
-}
-
-.intro {
-  margin-bottom: 25px;
-  color: var(--muted);
-  font-size: 14px;
-}
-
-.cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-  margin-bottom: 28px;
-}
-
-.card, .section {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 20px;
-}
-
-.card small {
-  color: var(--muted);
-}
-
-.card h2 {
-  margin-top: 12px;
-  font-size: 27px;
-}
-
-.section {
-  margin-bottom: 20px;
-}
-
-.section h3 {
-  margin-bottom: 18px;
-}
-
-.apps {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 13px;
-}
-
-.app {
-  background: #0b111c;
-  border: 1px solid var(--border);
-  padding: 17px;
-  border-radius: 10px;
-}
-
-.app h4 {
-  margin-bottom: 10px;
-}
-
-.status {
-  color: #ffbd58;
-  font-size: 12px;
-  margin: 8px 0;
-}
-
-.connect {
-  padding: 9px 13px;
-  margin-top: 10px;
-  background: #172944;
-  border: 1px solid #286bc3;
-  color: #80baff;
-  border-radius: 6px;
-}
-
-.activity {
-  padding: 13px 0;
-  border-bottom: 1px solid var(--border);
-  font-size: 13px;
-}
-
-.notice {
-  margin-top: 15px;
-  padding: 13px;
-  border-radius: 8px;
-  background: #172944;
-  color: #a8ceff;
-  font-size: 13px;
-  display: none;
-}
-
-footer {
-  text-align: center;
-  color: var(--muted);
-  padding: 25px;
-  font-size: 12px;
-}
-
-@media(max-width: 700px) {
-  .layout {
-    flex-direction: column;
-  }
-
-  aside {
-    width: 100%;
-    display: flex;
-    overflow-x: auto;
-    border-right: 0;
-    border-bottom: 1px solid var(--border);
-    padding: 10px;
-  }
-
-  aside button {
-    width: auto;
-    white-space: nowrap;
-    margin: 0 4px;
-  }
-
-  main {
-    padding: 18px;
-  }
-
-  .cards {
-    grid-template-columns: 1fr;
-  }
-
-  .apps {
-    grid-template-columns: 1fr;
-  }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080d18">
+  <meta name="description" content="Somerion Sintara brings business systems together in one clear workspace.">
+  <title>Somerion Sintara — Connected Business. Simple Operations.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
 
-<!-- LOGIN SCREEN -->
-
-<section id="login">
-  <div class="login-card">
-    <div class="brand">SOMERION <span>SINTARA</span></div>
-    <h2>Welcome Back</h2>
-    <p class="muted">Your business connections, in one place.</p>
-
-    <form id="loginForm">
-      <label for="authEmail">Email Address</label>
-      <input id="authEmail" name="email" type="email" autocomplete="email" placeholder="you@company.com" required>
-
-      <label for="authPassword">Password</label>
-      <input id="authPassword" name="password" type="password" autocomplete="current-password" placeholder="Enter password" minlength="8" required>
-
-      <div id="confirmPasswordGroup" class="hidden">
-        <label for="confirmPassword">Confirm Password</label>
-        <input id="confirmPassword" name="confirmPassword" type="password" autocomplete="new-password" placeholder="Re-enter password" minlength="8">
+  <section id="login" class="auth-shell">
+    <div class="auth-topbar">
+      <a class="brand" href="#" aria-label="Somerion Sintara home"><span class="brand-mark">S</span><span class="brand-name">SOMERION <b>SINTARA</b></span></a>
+      <span class="top-note">A smarter way to run connected business</span>
+    </div>
+    <div class="auth-grid">
+      <div class="auth-story">
+        <div class="eyebrow"><span class="eyebrow-dot"></span> BUSINESS OPERATIONS, REIMAGINED</div>
+        <h1>All your business systems.<br><span>One clearer picture.</span></h1>
+        <p class="story-copy">Bring the tools behind your business into one organised workspace. Spend less time switching between platforms and more time moving work forward.</p>
+        <div class="story-visual" aria-label="Conceptual illustration of connected business tools">
+          <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div>
+          <div class="orbit-core"><span class="core-symbol">S</span><small>SINTARA</small></div>
+          <div class="orbit-node node-shop"><span>▣</span><small>Commerce</small></div>
+          <div class="orbit-node node-books"><span>▤</span><small>Finance</small></div>
+          <div class="orbit-node node-social"><span>◎</span><small>Social</small></div>
+          <div class="orbit-node node-work"><span>✳</span><small>Workflows</small></div>
+          <div class="visual-caption">One workspace, designed to connect the moving parts.</div>
+        </div>
+        <div class="story-foot"><span>BUILT FOR MODERN TEAMS</span><span>GLOBAL · FLEXIBLE · CLEAR</span></div>
       </div>
 
-      <button id="authSubmit" class="primary" type="submit">Sign in</button>
-    </form>
-
-    <p id="authMessage" class="muted" role="status" aria-live="polite" style="margin-top:14px;font-size:13px;text-align:left;"></p>
-    <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:14px;">
-      <button id="registerMode" type="button" class="connect">Create account</button>
-      <button id="resetPassword" type="button" class="connect">Reset password</button>
-      <button id="signInMode" type="button" class="connect hidden">Back to sign in</button>
-    </div>
-  </div>
-</section>
-
-<!-- DASHBOARD -->
-
-<section id="dashboard" class="hidden">
-
-<header>
-  <div class="brand">SOMERION <span>SINTARA</span></div>
-  <button onclick="logout()" class="connect">Sign out</button>
-</header>
-
-<div class="layout">
-
-<aside>
-  <button class="active" onclick="showPage('overview',this)">Dashboard</button>
-  <button onclick="showPage('integrations',this)">Connections</button>
-  <button onclick="showPage('alerts',this)">Alerts</button>
-  <button onclick="showPage('activity',this)">Activity</button>
-  <button onclick="showPage('settings',this)">Settings</button>
-</aside>
-
-<main>
-
-<!-- OVERVIEW -->
-
-<div id="overview">
-  <h1 class="page-title">Business Overview</h1>
-  <p class="intro">Workspace status. Live integration monitoring is not active.</p>
-
-  <div class="cards">
-    <div class="card">
-      <small>Connected Applications</small>
-      <h2>0</h2>
-    </div>
-
-    <div class="card">
-      <small>Alert Monitoring</small>
-      <h2 style="font-size:18px;">Not active</h2>
-    </div>
-
-    <div class="card">
-      <small>Integration Health</small>
-      <h2>--</h2>
-    </div>
-  </div>
-
-  <div class="section">
-    <h3>Integration services</h3>
-    <p class="muted">
-      No third-party integrations are active yet. OAuth authorization, API connections,
-      synchronization, and monitoring must be implemented and tested before a platform
-      can be connected here.
-    </p>
-  </div>
-</div>
-
-<!-- CONNECTIONS -->
-
-<div id="integrations" class="hidden">
-  <h1 class="page-title">Connections</h1>
-  <p class="intro">Manage your business applications.</p>
-
-  <div class="section">
-    <h3>Business Applications</h3>
-    <div class="apps">
-
-      <div class="app">
-        <h4>Shopify</h4>
-        <p class="muted">Online Store</p>
-        <div class="status">Not connected</div>
-        <p class="muted">Connection is not available yet. No Shopify account is connected.</p>
+      <div class="auth-panel">
+        <div class="auth-panel-head">
+          <span class="panel-kicker">YOUR WORKSPACE</span>
+          <span class="secure-label"><span></span> Secure sign-in</span>
+        </div>
+        <h2>Welcome back</h2>
+        <p class="auth-subtitle">Sign in to continue to your Sintara workspace.</p>
+        <form id="loginForm">
+          <label for="authEmail">Work email</label>
+          <input id="authEmail" name="email" type="email" autocomplete="email" placeholder="you@company.com" required>
+          <label for="authPassword">Password</label>
+          <input id="authPassword" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" minlength="8" required>
+          <div id="confirmPasswordGroup" class="hidden">
+            <label for="confirmPassword">Confirm password</label>
+            <input id="confirmPassword" name="confirmPassword" type="password" autocomplete="new-password" placeholder="Re-enter your password" minlength="8">
+          </div>
+          <button id="authSubmit" class="primary-btn" type="submit">Sign in <span>↗</span></button>
+        </form>
+        <p id="authMessage" class="auth-message" role="status" aria-live="polite">Sign in with your registered email address.</p>
+        <div class="auth-actions">
+          <button id="registerMode" type="button" class="text-action">Create an account <span>→</span></button>
+          <button id="resetPassword" type="button" class="text-action">Forgot password?</button>
+          <button id="signInMode" type="button" class="text-action hidden">← Back to sign in</button>
+        </div>
+        <div class="auth-divider"><span></span><small>YOUR BUSINESS, IN FOCUS</small><span></span></div>
+        <p class="auth-legal">By continuing, you agree to use this workspace responsibly. Your account is protected by Firebase Authentication.</p>
       </div>
-
-      <div class="app">
-        <h4>QuickBooks</h4>
-        <p class="muted">Accounting</p>
-        <div class="status">Not connected</div>
-        <p class="muted">Connection is not available yet. No QuickBooks account is connected.</p>
-      </div>
-
-      <div class="app">
-        <h4>Facebook</h4>
-        <p class="muted">Social Media</p>
-        <div class="status">Not connected</div>
-        <p class="muted">Connection is not available yet. No Facebook account is connected.</p>
-      </div>
-
-      <div class="app">
-        <h4>Instagram</h4>
-        <p class="muted">Social Media</p>
-        <div class="status">Not connected</div>
-        <p class="muted">Connection is not available yet. No Instagram account is connected.</p>
-      </div>
-
     </div>
-  </div>
-</div>
+    <footer class="site-footer"><span>© 2026 SOMERION</span><span>Connected Business. Simple Operations.</span><span>MADE FOR WHAT'S NEXT</span></footer>
+  </section>
 
-<!-- ALERTS -->
+  <section id="dashboard" class="app-shell hidden">
+    <aside class="sidebar">
+      <a class="brand sidebar-brand" href="#"><span class="brand-mark">S</span><span class="brand-name">SOMERION <b>SINTARA</b></span></a>
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="side-nav" aria-label="Main navigation">
+        <button class="nav-item active" onclick="showPage('overview',this)"><span class="nav-icon">⌂</span> Overview</button>
+        <button class="nav-item" onclick="showPage('integrations',this)"><span class="nav-icon">⤢</span> Connections</button>
+        <button class="nav-item" onclick="showPage('alerts',this)"><span class="nav-icon">◉</span> Alerts</button>
+        <button class="nav-item" onclick="showPage('activity',this)"><span class="nav-icon">↗</span> Activity</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="sidebar-note"><span class="note-icon">✦</span><div><strong>Built to bring it together.</strong><p>Your business tools, in one place.</p></div></div>
+        <button class="nav-item settings-link" onclick="showPage('settings',this)"><span class="nav-icon">⚙</span> Settings</button>
+        <div class="sidebar-brandline">A SOMERION PRODUCT <span>•</span> 2026</div>
+      </div>
+    </aside>
 
-<div id="alerts" class="hidden">
-  <h1 class="page-title">Alerts</h1>
-  <p class="intro">Monitor integration problems and warnings.</p>
+    <div class="main-column">
+      <header class="app-header">
+        <div class="mobile-brand"><span class="brand-mark">S</span><span>SINTARA</span></div>
+        <div class="breadcrumb">Workspace <span>/</span> <b id="currentSection">Overview</b></div>
+        <div class="header-right"><span class="workspace-chip"><i></i> Personal workspace</span><button class="signout-btn" onclick="logout()">Sign out <span>↗</span></button></div>
+      </header>
 
-  <div class="section">
-    <h3>Alert monitoring is not configured</h3>
-    <p class="muted">
-      This workspace is not currently monitoring connected services, so it cannot
-      report integration alerts yet.
-    </p>
-  </div>
-</div>
+      <main class="content-area">
+        <div id="overview" class="page-view">
+          <div class="welcome-row">
+            <div><div class="eyebrow"><span class="eyebrow-dot"></span> YOUR BUSINESS, AT A GLANCE</div><h1 class="page-title">Good to have you here.</h1><p class="page-lead">A clear view of the systems that power your business.</p></div>
+            <button class="outline-btn" onclick="showPage('integrations',document.querySelectorAll('.nav-item')[1])">Explore connections <span>↗</span></button>
+          </div>
+          <div class="status-banner"><div class="banner-symbol">i</div><div><strong>Your workspace is ready to be set up</strong><p>Connectors and live monitoring are not active yet. Your workspace will show real connection data once integrations are configured.</p></div><span class="banner-tag">SETUP IN PROGRESS</span></div>
+          <div class="metric-grid">
+            <article class="metric-card"><div class="metric-top"><span>Connected applications</span><span class="metric-icon">⌘</span></div><div class="metric-value">0</div><div class="metric-foot">No external accounts connected</div></article>
+            <article class="metric-card"><div class="metric-top"><span>Monitoring</span><span class="metric-icon">◉</span></div><div class="metric-value metric-word">Not active</div><div class="metric-foot">Monitoring setup is pending</div></article>
+            <article class="metric-card"><div class="metric-top"><span>Integration health</span><span class="metric-icon">⌁</span></div><div class="metric-value metric-word">—</div><div class="metric-foot">No live integration data yet</div></article>
+          </div>
+          <section class="section-block">
+            <div class="section-heading"><div><span class="section-kicker">GETTING STARTED</span><h2>Bring your tools together</h2><p>Choose the services your business relies on.</p></div><button class="subtle-link" onclick="showPage('integrations',document.querySelectorAll('.nav-item')[1])">View all connections <span>→</span></button></div>
+            <div class="integration-preview">
+              <article class="integration-tile"><div class="service-logo shopify-logo">S</div><div><strong>Shopify</strong><small>Commerce</small></div><span class="state-pill">Not connected</span></article>
+              <article class="integration-tile"><div class="service-logo books-logo">QB</div><div><strong>QuickBooks</strong><small>Accounting</small></div><span class="state-pill">Not connected</span></article>
+              <article class="integration-tile"><div class="service-logo meta-logo">∞</div><div><strong>Meta</strong><small>Social platforms</small></div><span class="state-pill">Not connected</span></article>
+            </div>
+          </section>
+          <section class="bottom-feature"><div class="feature-copy"><span class="section-kicker">THE SINTARA APPROACH</span><h2>Less switching.<br>More seeing the whole picture.</h2><p>Sintara is being built to bring commerce, finance and social tools into a single operational view. Integrations will become available as each provider connection is configured and tested.</p></div><div class="feature-art"><div class="feature-ring ring-one"></div><div class="feature-ring ring-two"></div><div class="feature-center">S</div><span class="feature-chip chip-one">COMMERCE</span><span class="feature-chip chip-two">FINANCE</span><span class="feature-chip chip-three">SOCIAL</span></div></section>
+        </div>
 
-<!-- ACTIVITY -->
+        <div id="integrations" class="page-view hidden">
+          <div class="page-intro"><div class="eyebrow"><span class="eyebrow-dot"></span> YOUR BUSINESS ECOSYSTEM</div><h1 class="page-title">Connections</h1><p class="page-lead">See the platforms Sintara is being built to support.</p></div>
+          <div class="catalog-note"><span>✦</span><p><strong>Provider connections are not live yet.</strong> OAuth setup and end-to-end testing are still required. No account is connected from this screen.</p></div>
+          <div class="catalog-grid">
+            <article class="catalog-card"><div class="catalog-top"><div class="service-logo shopify-logo">S</div><span class="state-pill">Not connected</span></div><h3>Shopify</h3><p>Commerce platform for online stores, orders and products.</p><div class="catalog-meta">COMMERCE <span>·</span> CONNECTION NOT CONFIGURED</div></article>
+            <article class="catalog-card"><div class="catalog-top"><div class="service-logo woo-logo">W</div><span class="state-pill">Not connected</span></div><h3>WooCommerce</h3><p>Store and order management for WordPress commerce.</p><div class="catalog-meta">COMMERCE <span>·</span> CONNECTION NOT CONFIGURED</div></article>
+            <article class="catalog-card"><div class="catalog-top"><div class="service-logo books-logo">QB</div><span class="state-pill">Not connected</span></div><h3>QuickBooks</h3><p>Accounting information and financial workflows.</p><div class="catalog-meta">ACCOUNTING <span>·</span> CONNECTION NOT CONFIGURED</div></article>
+            <article class="catalog-card"><div class="catalog-top"><div class="service-logo xero-logo">x</div><span class="state-pill">Not connected</span></div><h3>Xero</h3><p>Accounting tools for invoices, expenses and reporting.</p><div class="catalog-meta">ACCOUNTING <span>·</span> PLANNED</div></article>
+            <article class="catalog-card"><div class="catalog-top"><div class="service-logo meta-logo">∞</div><span class="state-pill">Not connected</span></div><h3>Facebook & Instagram</h3><p>Social account connections and business presence.</p><div class="catalog-meta">SOCIAL <span>·</span> CONNECTION NOT CONFIGURED</div></article>
+            <article class="catalog-card future-card"><div class="catalog-top"><div class="service-logo neutral-logo">＋</div><span class="state-pill planned-pill">Explore next</span></div><h3>More platforms</h3><p>The integration catalogue can expand as providers are assessed and supported.</p><div class="catalog-meta">EXPANDING ECOSYSTEM</div></article>
+          </div>
+        </div>
 
-<div id="activity" class="hidden">
-  <h1 class="page-title">Activity</h1>
-  <p class="intro">Your recent business system activity.</p>
+        <div id="alerts" class="page-view hidden"><div class="page-intro"><div class="eyebrow"><span class="eyebrow-dot"></span> STAY INFORMED</div><h1 class="page-title">Alerts</h1><p class="page-lead">Important updates from your connected business services.</p></div><section class="empty-state"><div class="empty-icon">◉</div><h2>Monitoring isn't active yet</h2><p>This workspace is not currently monitoring connected services, so it cannot generate live integration alerts. Alerts will appear here after monitoring is implemented and configured.</p></section></div>
 
-  <div class="section">
-    <h3>Activity history</h3>
-    <p class="muted">No activity events have been recorded.</p>
-  </div>
-</div>
+        <div id="activity" class="page-view hidden"><div class="page-intro"><div class="eyebrow"><span class="eyebrow-dot"></span> WORKSPACE HISTORY</div><h1 class="page-title">Activity</h1><p class="page-lead">A record of events across your business connections.</p></div><section class="empty-state"><div class="empty-icon">↗</div><h2>No activity recorded</h2><p>There are no activity events to display yet. Once supported services are connected and event logging is enabled, recorded events will appear here.</p></section></div>
 
-<!-- SETTINGS -->
+        <div id="settings" class="page-view hidden"><div class="page-intro"><div class="eyebrow"><span class="eyebrow-dot"></span> PREFERENCES</div><h1 class="page-title">Settings</h1><p class="page-lead">Workspace information and account preferences.</p></div><section class="settings-card"><span class="section-kicker">WORKSPACE PROFILE</span><h2>Somerion Sintara</h2><p>Parent company: Somerion</p><div class="settings-divider"></div><div class="settings-row"><span>Workspace type</span><strong>Personal workspace</strong></div><div class="settings-row"><span>Authentication</span><strong>Firebase Authentication</strong></div></section></div>
+        <div id="notice" class="notice" role="status"></div>
+      </main>
+      <footer class="app-footer"><span>© 2026 Somerion Sintara</span><span>Connected Business. Simple Operations.</span><span>WORKSPACE</span></footer>
+    </div>
+  </section>
 
-<div id="settings" class="hidden">
-  <h1 class="page-title">Settings</h1>
-  <p class="intro">Manage your workspace.</p>
-
-  <div class="section">
-    <h3>Company</h3>
-    <p>Somerion Sintara</p>
-    <p class="muted">Parent company: Somerion</p>
-  </div>
-</div>
-
-<div id="notice" class="notice"></div>
-
-</main>
-</div>
-
-<footer>
-  SOMERION © 2026 · Connected Business. Simple Operations.
-</footer>
-
-</section>
-
-
-
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
-<script src="script.js"></script>
-
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
-
