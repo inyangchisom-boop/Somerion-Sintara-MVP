@@ -304,20 +304,26 @@ footer {
     <p class="muted">Your business connections, in one place.</p>
 
     <form id="loginForm">
-      <label>Email Address</label>
-      <input type="email" placeholder="you@company.com" required>
+      <label for="authEmail">Email Address</label>
+      <input id="authEmail" name="email" type="email" autocomplete="email" placeholder="you@company.com" required>
 
-      <label>Password</label>
-      <input type="password" placeholder="Enter password" required>
+      <label for="authPassword">Password</label>
+      <input id="authPassword" name="password" type="password" autocomplete="current-password" placeholder="Enter password" minlength="8" required>
 
-      <button class="primary" type="submit">
-        Sign in
-      </button>
+      <div id="confirmPasswordGroup" class="hidden">
+        <label for="confirmPassword">Confirm Password</label>
+        <input id="confirmPassword" name="confirmPassword" type="password" autocomplete="new-password" placeholder="Re-enter password" minlength="8">
+      </div>
+
+      <button id="authSubmit" class="primary" type="submit">Sign in</button>
     </form>
 
-    <p class="muted" style="margin-top:20px;font-size:11px;">
-      Sign in with your Somerion account.
-    </p>
+    <p id="authMessage" class="muted" role="status" aria-live="polite" style="margin-top:14px;font-size:13px;text-align:left;"></p>
+    <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:14px;">
+      <button id="registerMode" type="button" class="connect">Create account</button>
+      <button id="resetPassword" type="button" class="connect">Reset password</button>
+      <button id="signInMode" type="button" class="connect hidden">Back to sign in</button>
+    </div>
   </div>
 </section>
 
@@ -327,7 +333,7 @@ footer {
 
 <header>
   <div class="brand">SOMERION <span>SINTARA</span></div>
-  <button onclick="logout()" class="connect">Exit Demo</button>
+  <button onclick="logout()" class="connect">Sign out</button>
 </header>
 
 <div class="layout">
@@ -366,17 +372,11 @@ footer {
   </div>
 
   <div class="section">
-    <h3>Welcome to Somerion Sintara</h3>
+    <h3>Integration services</h3>
     <p class="muted">
-      Your integration dashboard is ready.
-      Connect your business applications to begin.
-    </p>
-  </div>
-
-  <div class="section">
-    <h3>Quick Access</h3>
-    <p class="muted">
-      Shopify · QuickBooks · Facebook · Instagram
+      No third-party integrations are active yet. OAuth authorization, API connections,
+      synchronization, and monitoring must be implemented and tested before a platform
+      can be connected here.
     </p>
   </div>
 </div>
@@ -395,36 +395,28 @@ footer {
         <h4>Shopify</h4>
         <p class="muted">Online Store</p>
         <div class="status">Not connected</div>
-        <button class="connect" onclick="connectApp('Shopify')">
-          Connect
-        </button>
+        <p class="muted">Connection is not available yet. No Shopify account is connected.</p>
       </div>
 
       <div class="app">
         <h4>QuickBooks</h4>
         <p class="muted">Accounting</p>
         <div class="status">Not connected</div>
-        <button class="connect" onclick="connectApp('QuickBooks')">
-          Connect
-        </button>
+        <p class="muted">Connection is not available yet. No QuickBooks account is connected.</p>
       </div>
 
       <div class="app">
         <h4>Facebook</h4>
         <p class="muted">Social Media</p>
         <div class="status">Not connected</div>
-        <button class="connect" onclick="connectApp('Facebook')">
-          Connect
-        </button>
+        <p class="muted">Connection is not available yet. No Facebook account is connected.</p>
       </div>
 
       <div class="app">
         <h4>Instagram</h4>
         <p class="muted">Social Media</p>
         <div class="status">Not connected</div>
-        <button class="connect" onclick="connectApp('Instagram')">
-          Connect
-        </button>
+        <p class="muted">Connection is not available yet. No Instagram account is connected.</p>
       </div>
 
     </div>
@@ -438,9 +430,10 @@ footer {
   <p class="intro">Monitor integration problems and warnings.</p>
 
   <div class="section">
-    <h3>No alerts yet</h3>
+    <h3>Alert monitoring is not configured</h3>
     <p class="muted">
-      Alerts will appear here when monitoring is implemented.
+      This workspace is not currently monitoring connected services, so it cannot
+      report integration alerts yet.
     </p>
   </div>
 </div>
@@ -452,9 +445,8 @@ footer {
   <p class="intro">Your recent business system activity.</p>
 
   <div class="section">
-    <h3>Activity Feed</h3>
-    <div class="activity">Dashboard prototype opened.</div>
-    <div class="activity">Integration monitoring: Not yet active.</div>
+    <h3>Activity history</h3>
+    <p class="muted">No activity events have been recorded.</p>
   </div>
 </div>
 
