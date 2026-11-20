@@ -190,7 +190,7 @@ function showPage(page, button) {
 }
 
 console.log("Somerion Sintara authentication client initialized.");
-\n
+
 const AGENT_API_URL = "https://somerion-agent-api-v1.somerion-oi.workers.dev";
 
 async function agentRequest(path, options = {}) {
