@@ -1,37 +1,47 @@
-# SOMERION SINTARA
+# Somerion Sintara
 
-### Connected Business. Simple Operations.
+**Connected Business. Simple Operations.**
 
-Somerion Sintara is an AI-powered business integration platform developed under Somerion.
+Somerion Sintara is being developed under Somerion as a global business-operations integration platform.
 
-## Mission
+## Current implementation status
 
-Help businesses connect their applications, monitor integrations, detect errors, and resolve operational problems.
+This repository currently contains a responsive web interface and Firebase email/password authentication.
 
-## Initial Integrations
+Implemented in the current code:
+- Firebase email/password sign-in
+- Firebase account registration
+- Firebase password-reset email request
+- Firebase sign-out
+- Authenticated dashboard access through Firebase Auth state
+- A per-user Firestore profile write using the authenticated user's UID
 
-- Shopify
-- QuickBooks
-- Facebook
-- Instagram
+## Not implemented yet
 
-## Core Features
-
-- Business dashboard
-- Application connections
+The following are not currently working product features and must not be presented as active:
+- Shopify, QuickBooks, Facebook, Instagram, or other third-party OAuth/API connections
+- Business data synchronization
 - Integration health monitoring
-- Error detection
-- Alerts and activity tracking
-- AI-powered problem resolution
+- Automated error detection or alerts
+- Activity event collection
+- AI diagnosis or automated repair
+- Currency conversion or multi-currency transaction handling
+
+The interface intentionally identifies these capabilities as unavailable until they are implemented and tested.
 
 ## Technology
 
-- HTML
-- CSS
-- JavaScript
-- Firebase
-- Third-party APIs
+- HTML, CSS, and JavaScript
+- Firebase Authentication
+- Cloud Firestore
+- GitHub Pages for static web hosting
 
-## Development Stage
+## Important deployment and security notes
 
-Initial MVP prototype.
+- Firestore security rules must allow each authenticated user to read/write only their own `users/{uid}` profile document. The rules configured in the Firebase Console have not been verified from this repository.
+- Firebase web configuration is client-side configuration, not a private service-account credential. Never put service-account keys, OAuth client secrets, or other private credentials in this public repository.
+- Third-party integrations require a trusted backend for OAuth callbacks, secret storage, token refresh, access control, and API requests. A browser-only GitHub Pages site is not sufficient for those operations.
+
+## Development stage
+
+Early authenticated web foundation. This is not yet a production-ready integration platform.
