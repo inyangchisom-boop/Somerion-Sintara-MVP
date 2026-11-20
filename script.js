@@ -175,6 +175,12 @@ function showPage(page, button) {
   const selectedPage = document.getElementById(page);
   if (selectedPage) selectedPage.classList.remove("hidden");
 
+  const sectionTitle = document.getElementById("currentSection");
+  if (sectionTitle) {
+    const titles = { overview: "Overview", integrations: "Connections", alerts: "Alerts", activity: "Activity", settings: "Settings" };
+    sectionTitle.textContent = titles[page] || "Workspace";
+  }
+
   document.querySelectorAll("aside button").forEach(function(item) {
     item.classList.remove("active");
   });
