@@ -76,3 +76,16 @@ Initial API routes:
 ## Backend implementation boundary
 
 The five services and their databases have been provisioned and deployed. This is a separated backend foundation, not completed third-party integrations. OAuth routes deliberately return `provider_not_configured` until the corresponding developer-app credentials, redirect URLs, consent scopes, token encryption and provider-specific API workflows are configured and tested. Data synchronization, monitoring, alert generation, and automated repair are not active yet.
+
+## Sintara Agent (new service)
+
+The personal AI workspace assistant is deployed as a separate Cloudflare Worker and database:
+- Worker: `somerion-agent-api-v1`
+- Endpoint: `https://somerion-agent-api-v1.somerion-oi.workers.dev`
+- Database: `somerion-agent-db-v1`
+- AI: Cloudflare Workers AI binding (`@cf/meta/llama-3.1-8b-instruct`)
+- Scheduled due-date reminder check: every 15 minutes.
+
+Agent data is partitioned by the authenticated Firebase UID. It supports personal task creation, listing, completion/deletion, AI assistance using the user's open tasks as context, reminder preferences, and in-app due-date notifications.
+
+Current limits: this agent does not yet monitor external Shopify, accounting, or social-platform events; send emails/SMS/push notifications; message other people; or perform business actions. Those capabilities require the relevant provider connections, notification channels, permissions, and further testing. The AI endpoint and browser-to-Worker end-to-end flow still require a live signed-in user test.
